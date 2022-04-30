@@ -1,0 +1,9 @@
+{
+  "shield_indicator.tinyconfig.title": "盾牌指示器",
+  "shield_indicator.tinyconfig.enabled": "已启用",
+  "shield_indicator.tinyconfig.showDelay": "显示举盾延迟(5gt)",
+  "shield_indicator.tinyconfig.coolingDownMode": "显示盾牌冷却",
+  "shield_indicator.tinyconfig.enum.CoolingDownMode.NEVER": "不显示",
+  "shield_indicator.tinyconfig.enum.CoolingDownMode.OFFHAND": "仅副手",
+  "shield_indicator.tinyconfig.enum.CoolingDownMode.ALWAYS": "总是"
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "shield_indicator",
+  "version": "${version}",
+  "name": "Shield Indicator",
+  "description": "盾牌指示器",
+  "authors": [
+    "Noryea"
+  ],
+  "contact": {
+    "sources": "https://github.com/Noryea/shield-indicator",
+    "issue": "https://github.com/Noryea/shield-indicator/issues"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": [ "cn.noryea.shield_indicator.ShieldIndicatorMod" ],
+    "modmenu": [ "cn.noryea.shield_indicator.config.ModMenuEntryPoint" ]
+  },
+  "mixins": [
+    "shield_indicator.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  }
+}

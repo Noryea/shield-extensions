@@ -38,17 +38,17 @@ public abstract class InGameHudMixin extends DrawableHelper {
 
     public void renderInjected(MatrixStack matrices) {
         ClientPlayerEntity player = this.client.player;
-        int i = this.scaledHeight / 2 - 7 + 23;
+        int i = this.scaledHeight / 2 - 7 + 25;
         int j = this.scaledWidth/ 2 - 8;
 
         RenderSystem.setShaderTexture(0, new Identifier("textures/gui/shield_indicator.png"));
         if (player.getItemCooldownManager().isCoolingDown(Items.SHIELD.asItem()) && shouldShowCoolingDown(player)) {
-            this.drawTexture(matrices, j, i, 32, 0, 16, 16);
+            this.drawTexture(matrices, j, i, 32, 0, 16, 12);
         } else if (player.isUsingItem() && !player.getActiveItem().isEmpty()) {
             ItemStack activeItem = player.getActiveItem();
             if (activeItem.getUseAction() == UseAction.BLOCK) {
                 int k = (getBlockingProcess(player) + 1 ) * 2;
-                this.drawTexture(matrices, j, i, 0, 0, 16, 16);
+                this.drawTexture(matrices, j, i, 0, 0, 16, 12);
                 this.drawTexture(matrices, j , i + ( 12 - k ), 16, 12 - k, 16, k);
             }
         }

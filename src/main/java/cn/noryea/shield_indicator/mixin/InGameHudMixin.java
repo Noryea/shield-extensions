@@ -6,12 +6,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.UseAction;
+import net.minecraft.world.GameMode;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,27 +31,33 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Shadow private int scaledWidth;
     @Shadow private int scaledHeight;
 
-    @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIIIII)V"), method = {"renderCrosshair"}, slice = {@Slice(from = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;blendFuncSeparate(Lcom/mojang/blaze3d/platform/GlStateManager$SrcFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DstFactor;Lcom/mojang/blaze3d/platform/GlStateManager$SrcFactor;Lcom/mojang/blaze3d/platform/GlStateManager$DstFactor;)V"), to = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getAttackCooldownProgress(F)F"))})
+    @Inject(method = "renderCrosshair", at = @At("TAIL"))
     public void injectedRender(MatrixStack matrices, CallbackInfo ci) {
-        if (Config.enabled) {
-            renderInjected(matrices);
+        GameOptions gameOptions = this.client.options;
+        ClientPlayerEntity player = this.client.player;
+        if (Config.enabled && gameOptions.getPerspective().isFirstPerson() && !player.isSpectator() && !(gameOptions.debugEnabled && !gameOptions.hudHidden && !this.client.player.hasReducedDebugInfo() && !gameOptions.reducedDebugInfo)) {
+            renderInjected(matrices, player);
         }
     }
 
-    public void renderInjected(MatrixStack matrices) {
-        ClientPlayerEntity player = this.client.player;
-        int i = this.scaledHeight / 2 - 7 + 25;
+    private void renderInjected(MatrixStack matrices,ClientPlayerEntity player) {
+
+        int i = this.scaledHeight / 2 - 7 + 23;
         int j = this.scaledWidth/ 2 - 8;
 
         RenderSystem.setShaderTexture(0, new Identifier("textures/gui/shield_indicator.png"));
         if (player.getItemCooldownManager().isCoolingDown(Items.SHIELD.asItem()) && shouldShowCoolingDown(player)) {
-            this.drawTexture(matrices, j, i, 32, 0, 16, 12);
+            this.drawTexture(matrices, j, i, 48, 0, 16, 14);
         } else if (player.isUsingItem() && !player.getActiveItem().isEmpty()) {
             ItemStack activeItem = player.getActiveItem();
             if (activeItem.getUseAction() == UseAction.BLOCK) {
-                int k = (getBlockingProcess(player) + 1 ) * 2;
-                this.drawTexture(matrices, j, i, 0, 0, 16, 12);
-                this.drawTexture(matrices, j , i + ( 12 - k ), 16, 12 - k, 16, k);
+                int a = (getBlockingProcess(player)) * 2;
+                if (a == 12) {
+                    this.drawTexture(matrices, j, i, 32, 0, 16, 14);
+                } else {
+                    this.drawTexture(matrices, j, i, 0, 0, 16, 14);
+                    this.drawTexture(matrices, j, i + 12 - a, 16, 12 - a, 16, a + 2);
+                }
             }
         }
         RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
@@ -59,11 +67,11 @@ public abstract class InGameHudMixin extends DrawableHelper {
         if (player.isUsingItem() && !player.getActiveItem().isEmpty()) {
             Item activeItem = player.getActiveItem().getItem();
             if (!Config.showDelay) {
-                return 5;
+                return 6;
             } else if (activeItem.getUseAction(player.getActiveItem()) != UseAction.BLOCK) {
                 return 0;
             } else {
-                return Math.min(activeItem.getMaxUseTime(player.getActiveItem()) - player.getItemUseTimeLeft(), 5);
+                return Math.min(activeItem.getMaxUseTime(player.getActiveItem()) - player.getItemUseTimeLeft(), 6);
             }
         }
         return 0;

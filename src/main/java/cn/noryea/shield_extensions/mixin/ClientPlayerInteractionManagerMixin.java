@@ -24,7 +24,7 @@ public abstract class ClientPlayerInteractionManagerMixin {
     public void playSound(PlayerEntity player, Entity target, CallbackInfo ci) {
         if (player.getMainHandStack().getItem() instanceof AxeItem) {
             if (Config.disablingSound && target instanceof PlayerEntity && willBlockedByShield((LivingEntity) target, player.getPos())) {
-                player.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.8F, 0.66F);
+                player.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0F, 1.12F);
             }
         }
     }

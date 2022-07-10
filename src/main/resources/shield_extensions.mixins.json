@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "cn.noryea.shield_extensions.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "InGameHudMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "ProjectileEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

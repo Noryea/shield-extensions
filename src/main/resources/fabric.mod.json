@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
-  "id": "shield_indicator",
-  "version": "${version}",
-  "name": "Shield Indicator",
-  "description": "盾牌指示器",
+  "id": "shield_extensions",
+  "version": "1.0.0",
+  "name": "Shield Extensions",
+  "description": "A simple pvp mod for 1.18",
   "authors": [
     "Noryea"
   ],
   "contact": {
-    "sources": "https://github.com/Noryea/shield-indicator",
-    "issue": "https://github.com/Noryea/shield-indicator/issues"
+    "sources": "https://github.com/Noryea/shield-extensions",
+    "issue": "https://github.com/Noryea/shield-extensions/issues"
   },
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
-    "main": [ "cn.noryea.shield_indicator.ShieldIndicatorMod" ],
-    "modmenu": [ "cn.noryea.shield_indicator.config.ModMenuEntryPoint" ]
+    "client": [
+      "cn.noryea.shield_extensions.ShieldExtensionsMod"
+    ]
   },
   "mixins": [
-    "shield_indicator.mixins.json"
+    "shield_extensions.mixins.json"
   ],
-
   "depends": {
     "fabricloader": ">=0.11.3",
     "minecraft": "1.18.x",

@@ -1,0 +1,10 @@
+{
+  "shield_extensions.midnightconfig.title": "Shield Extensions",
+  "shield_extensions.midnightconfig.disablingSound": "Shield Disable Sound",
+  "shield_extensions.midnightconfig.arrowBlockedSound": "Arrow Blocked Sound",
+  "shield_extensions.midnightconfig.showDelay": "Show Raising Delay(5gt)",
+  "shield_extensions.midnightconfig.coolingDownMode": "Show Cooling Down",
+  "shield_extensions.midnightconfig.enum.CoolingDownMode.NEVER": "§cNever",
+  "shield_extensions.midnightconfig.enum.CoolingDownMode.OFFHAND": "Offhand Only",
+  "shield_extensions.midnightconfig.enum.CoolingDownMode.ALWAYS": "Always"
+}

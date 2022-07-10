@@ -15,7 +15,15 @@ configurations {
 }
 
 repositories {
-	maven { url "https://maven.terraformersmc.com/releases" }
+	maven {
+		url = 'https://maven.terraformersmc.com/releases'
+		content {
+			includeGroup 'com.terraformersmc'
+		}
+	}
+	maven {
+		url = "https://api.modrinth.com/maven"
+	}
 }
 
 dependencies {
@@ -24,9 +32,9 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
 
-	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+	include "maven.modrinth:midnightlib:${project.midnightlib_version}"
 }
 
 loom {

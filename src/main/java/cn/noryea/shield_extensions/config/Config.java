@@ -6,9 +6,9 @@ public class Config extends MidnightConfig {
 
     @Entry public static boolean disablingSound = true;
 
-    @Entry public static boolean arrowBlockedSound = true;
+    @Entry public static boolean blockedSound = true;
 
-    @Entry public static boolean tryBlockingAnimation = true;
+    //@Entry public static boolean tryBlockingAnimation = true;
 
     @Entry public static boolean showDelay = false;
 

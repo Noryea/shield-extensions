@@ -1,6 +1,5 @@
 package cn.noryea.shield_extensions.mixin;
 
-import cn.noryea.shield_extensions.ShieldExtensionsMod;
 import cn.noryea.shield_extensions.config.Config;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -34,9 +33,9 @@ public abstract class ProjectileEntityMixin extends Entity {
     @Inject(method = "onEntityHit", at = @At("TAIL"))
     public void playSound(EntityHitResult entityHitResult, CallbackInfo ci) {
         Entity target = entityHitResult.getEntity();
-        if (Config.arrowBlockedSound) {
+        if (Config.blockedSound) {
             if (owner != null && target.isPlayer() && willBlockedByShield((LivingEntity) target, this.getPos())) {
-                owner.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 1.0F);
+                owner.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 0.8F + this.world.random.nextFloat() * 0.4F);
             }
         }
     }

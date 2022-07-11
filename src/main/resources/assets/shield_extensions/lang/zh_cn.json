@@ -1,7 +1,7 @@
 {
   "shield_extensions.midnightconfig.title": "盾牌拓展",
-  "shield_extensions.midnightconfig.disablingSound": "破盾音效",
-  "shield_extensions.midnightconfig.arrowBlockedSound": "远程格挡音效",
+  "shield_extensions.midnightconfig.disablingSound": "伪破盾音效",
+  "shield_extensions.midnightconfig.blockedSound": "攻击被格挡音效",
   "shield_extensions.midnightconfig.showDelay": "显示举盾延迟(5gt)",
   "shield_extensions.midnightconfig.coolingDownMode": "显示破盾图标",
   "shield_extensions.midnightconfig.enum.CoolingDownMode.NEVER": "§c不显示",

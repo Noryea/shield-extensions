@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "shield_extensions",
-  "version": "1.0.0",
+  "version": "${version}",
   "name": "Shield Extensions",
   "description": "A simple pvp mod for 1.18",
   "authors": [

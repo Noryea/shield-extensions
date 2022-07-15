@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityType;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
@@ -34,8 +35,11 @@ public abstract class ProjectileEntityMixin extends Entity {
     public void playSound(EntityHitResult entityHitResult, CallbackInfo ci) {
         Entity target = entityHitResult.getEntity();
         if (Config.blockedSound) {
-            if (owner != null && target.isPlayer() && willBlockedByShield((LivingEntity) target, this.getPos())) {
-                owner.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 0.8F + this.world.random.nextFloat() * 0.4F);
+            byte pierceLevel = this.writeNbt(new NbtCompound()).getByte("PierceLevel");
+            if (!(pierceLevel > 0)) {
+                if (owner != null && target.isPlayer() && willBlockedByShield((LivingEntity) target, this.getPos())) {
+                    owner.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 0.8F + this.world.random.nextFloat() * 0.4F);
+                }
             }
         }
     }

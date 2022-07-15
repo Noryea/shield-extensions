@@ -7,7 +7,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version
+version = getVersion()
 group = project.maven_group
 
 configurations {
@@ -93,4 +93,10 @@ publishing {
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
     }
+}
+
+String getVersion() {
+	String version = "${project.mod_version}+mc${project.minecraft_version}"
+
+	return version
 }

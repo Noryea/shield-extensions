@@ -35,7 +35,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
     public void injectedRender(MatrixStack matrices, CallbackInfo ci) {
         GameOptions gameOptions = this.client.options;
         ClientPlayerEntity player = this.client.player;
-        if (gameOptions.getPerspective().isFirstPerson() && !player.isSpectator() && !(gameOptions.debugEnabled && !gameOptions.hudHidden && !this.client.player.hasReducedDebugInfo() && !gameOptions.reducedDebugInfo)) {
+        if (gameOptions.getPerspective().isFirstPerson() && !player.isSpectator() && !(gameOptions.debugEnabled && !gameOptions.hudHidden && !this.client.player.hasReducedDebugInfo() && !(Boolean)gameOptions.getReducedDebugInfo().getValue())) {
             renderInjected(matrices, player);
         }
     }

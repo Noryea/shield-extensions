@@ -6,5 +6,9 @@
   "shield_extensions.midnightconfig.coolingDownMode": "Show Cooling Down",
   "shield_extensions.midnightconfig.enum.CoolingDownMode.NEVER": "§cNever",
   "shield_extensions.midnightconfig.enum.CoolingDownMode.OFFHAND": "Offhand Only",
-  "shield_extensions.midnightconfig.enum.CoolingDownMode.ALWAYS": "Always"
+  "shield_extensions.midnightconfig.enum.CoolingDownMode.ALWAYS": "Always",
+  "shield_extensions.midnightconfig.enemyRaisingDelay": "Enemy Shield Raising Delay Model",
+  "shield_extensions.midnightconfig.enum.EnemyRaisingDelay.NEVER": "§cNever",
+  "shield_extensions.midnightconfig.enum.EnemyRaisingDelay.fourT": "4t",
+  "shield_extensions.midnightconfig.enum.EnemyRaisingDelay.fiveT": "5t"
 }

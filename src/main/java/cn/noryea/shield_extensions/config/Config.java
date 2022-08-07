@@ -15,6 +15,8 @@ public class Config extends MidnightConfig {
     public enum CoolingDownMode { NEVER, OFFHAND, ALWAYS }
     @Entry public static CoolingDownMode coolingDownMode = CoolingDownMode.NEVER;
 
+    public enum EnemyRaisingDelay { NEVER, fourT, fiveT }
 
+    @Entry public static EnemyRaisingDelay enemyRaisingDelay = EnemyRaisingDelay.NEVER;
 
 }

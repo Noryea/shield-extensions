@@ -1,9 +1,0 @@
-{
-  "shield_indicator.tinyconfig.title": "Shield Indicator",
-  "shield_indicator.tinyconfig.enabled": "Enabled",
-  "shield_indicator.tinyconfig.showDelay": "Show Raising Delay(5gt)",
-  "shield_indicator.tinyconfig.coolingDownMode": "Show Cooling Down",
-  "shield_indicator.tinyconfig.enum.CoolingDownMode.NEVER": "Never",
-  "shield_indicator.tinyconfig.enum.CoolingDownMode.OFFHAND": "Offhand",
-  "shield_indicator.tinyconfig.enum.CoolingDownMode.ALWAYS": "Always"
-}

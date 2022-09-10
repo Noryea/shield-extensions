@@ -13,8 +13,10 @@ public class Config extends MidnightConfig {
     @Entry public static boolean showDelay = false;
 
     public enum CoolingDownMode { NEVER, OFFHAND, ALWAYS }
-    @Entry public static CoolingDownMode coolingDownMode = CoolingDownMode.NEVER;
+    @Entry public static CoolingDownMode coolingDownMode = CoolingDownMode.OFFHAND;
 
+    public enum EnemyRaisingDelay { NEVER, fourT, fiveT }
 
+    @Entry public static EnemyRaisingDelay enemyRaisingDelay = EnemyRaisingDelay.NEVER;
 
 }

@@ -21,6 +21,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static cn.noryea.shield_extensions.ShieldExtensionsMod.getBlockingProcess;
+
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin extends DrawableHelper {
@@ -35,7 +37,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
     public void injectedRender(MatrixStack matrices, CallbackInfo ci) {
         GameOptions gameOptions = this.client.options;
         ClientPlayerEntity player = this.client.player;
-        if (gameOptions.getPerspective().isFirstPerson() && !player.isSpectator() && !(gameOptions.debugEnabled && !gameOptions.hudHidden && !this.client.player.hasReducedDebugInfo() && !(Boolean)gameOptions.getReducedDebugInfo().getValue())) {
+        if (gameOptions.getPerspective().isFirstPerson() && !player.isSpectator() && !(gameOptions.debugEnabled && !gameOptions.hudHidden && !this.client.player.hasReducedDebugInfo() && !gameOptions.getReducedDebugInfo().getValue())) {
             renderInjected(matrices, player);
         }
     }
@@ -51,7 +53,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
         } else if (player.isUsingItem() && !player.getActiveItem().isEmpty()) {
             ItemStack activeItem = player.getActiveItem();
             if (activeItem.getUseAction() == UseAction.BLOCK) {
-                int a = (getBlockingProcess(player)) * 2;
+                int a = (getBlockingProcess(player, !Config.showDelay)) * 2;
                 if (a == 12) {
                     this.drawTexture(matrices, j, i, 32, 0, 16, 14);
                 } else {
@@ -63,19 +65,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
         RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
     }
 
-    private int getBlockingProcess(ClientPlayerEntity player) {
-        if (player.isUsingItem() && !player.getActiveItem().isEmpty()) {
-            Item activeItem = player.getActiveItem().getItem();
-            if (!Config.showDelay) {
-                return 6;
-            } else if (activeItem.getUseAction(player.getActiveItem()) != UseAction.BLOCK) {
-                return 0;
-            } else {
-                return Math.min(activeItem.getMaxUseTime(player.getActiveItem()) - player.getItemUseTimeLeft(), 6);
-            }
-        }
-        return 0;
-    }
+
 
     private boolean shouldShowCoolingDown(ClientPlayerEntity player) {
         if (Config.coolingDownMode == Config.CoolingDownMode.OFFHAND) {

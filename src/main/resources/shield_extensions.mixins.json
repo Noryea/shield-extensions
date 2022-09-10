@@ -6,7 +6,8 @@
   "mixins": [
     "InGameHudMixin",
     "ClientPlayerInteractionManagerMixin",
-    "ProjectileEntityMixin"
+    "ProjectileEntityMixin",
+    "PlayerEntityRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
